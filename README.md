@@ -36,7 +36,7 @@ rust-web-server/
 ### **2️⃣ Clone the Repository**
 
 ```sh
-git clone https://github.com/BintangDiLangit/simple-web_server_booking_car-rust
+git clone https://github.com/BintangDiLangit/simple-web_server_booking_car-rust.git
 cd rust-web-server
 ```
 
