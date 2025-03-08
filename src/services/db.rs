@@ -22,15 +22,12 @@ pub struct Database {
 
 impl Database {
     pub async fn init() -> Self {
-        let uri = match env::var("MONGO_URI") {
-            Ok(v) => v.to_string(),
-            Err(_) => {
-                "mongodb://admin:w4xKXLHklhLa4BU7rS@103.245.38.205:27017/?directConnection=true"
-                    .to_string()
-            }
-        };
+        let uri = env::var("MONGO_URI").expect("MONGO_URI not found in environment variables");
 
-        let client = Client::with_uri_str(uri).await.unwrap();
+        let client = Client::with_uri_str(&uri)
+            .await
+            .expect("Failed to connect to MongoDB");
+
         let db = client.database("car_driving");
 
         let booking: Collection<Booking> = db.collection("booking");
