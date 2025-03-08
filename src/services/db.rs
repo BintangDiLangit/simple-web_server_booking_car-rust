@@ -6,6 +6,7 @@ use crate::models::{
     owner_model::Owner,
 };
 use chrono::Utc;
+use dotenv::dotenv;
 use futures_util::StreamExt;
 use mongodb::{
     Client, Collection,
@@ -22,6 +23,7 @@ pub struct Database {
 
 impl Database {
     pub async fn init() -> Self {
+        dotenv().ok();
         let uri = env::var("MONGO_URI").expect("MONGO_URI not found in environment variables");
 
         let client = Client::with_uri_str(&uri)
